@@ -1,0 +1,18 @@
+c:\users\1\documents\visual studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.exe.config
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.exe
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.pdb
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.csprojResolveAssemblyReference.cache
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.Form1.resources
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.Properties.Resources.resources
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.csproj.GenerateResource.Cache
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.exe
+C:\Users\1\Documents\Visual Studio 2015\Projects\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.pdb
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.exe.config
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.exe
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.pdb
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.exe
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\bin\Debug\ConvexEnvelope.pdb
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.csprojResolveAssemblyReference.cache
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.Form1.resources
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.Properties.Resources.resources
+C:\Users\1\Desktop\Лабы Быкова\6\ConvexEnvelope\ConvexEnvelope\obj\Debug\ConvexEnvelope.csproj.GenerateResource.Cache
