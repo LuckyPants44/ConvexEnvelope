@@ -70,6 +70,74 @@ namespace ConvexEnvelope
 
         void ConvexMethod()
         {
+            Stack<PointF> result = new Stack<PointF>();
+            Geometry g = new Geometry();
+            PointF a = new PointF();
+            PointF b = new PointF();
+            PointF c = new PointF();
+            //Выбираем самую левую из нижних
+            PointF lowLeft = new PointF();
+            for(int i = 0; i < points.Count; i++)
+            {
+                if (i != 0)
+                {
+                    if (lowLeft.Y > points[i].Y)
+                    {
+                        lowLeft = points[i];
+                        points[i] = points[0];
+                        points[0] = lowLeft;
+                    }
+                    if (lowLeft.Y == points[i].Y)
+                    {
+                        if(lowLeft.X > points[i].X)
+                        {
+                            lowLeft = points[i];
+                            points[i] = points[0];
+                            points[0] = lowLeft;
+                        }
+                    }
+                }
+                else
+                {
+                    lowLeft = points[i];
+                }
+            }
+            //Сортируем по полярному углу
+            for(int i = 0; i < points.Count; i++)
+            {
+                for(int j = 0; j < points.Count; j++)
+                {
+                    Vector v = new Vector(points[0], new PointF(points[0].X+5,points[0].Y));
+                    Vector v1 = new Vector(points[0], points[i]);
+                    Vector v2 = new Vector(points[0], points[j]);
+
+                    if (g.Angle(v,v1) > (g.Angle(v,v2)))
+                    {
+                        PointF buf = new PointF();
+                        buf = points[j];
+                        points[j] = points[i];
+                        points[i] = buf;
+                    }
+                }
+            }
+            result.Push(points[0]);
+            result.Push(points[1]);
+            //Доделать!
+            /*for(int i = 2; i < points.Count; i++)
+            {
+                b = result.Pop();
+                a = result.Peek();
+                result.Push(b);
+                c = points[i];
+                Vector u = new Vector(a, b);
+                Vector v = new Vector(b, c);
+                //Если не левый поворот, то 
+                while (!(u.X * v.Y - u.Y * v.X >= 0))
+                {
+                    result.Pop();
+                }
+                result.Push(points[i]);
+            }*/
             DrawFigure();
         }
 
@@ -78,13 +146,22 @@ namespace ConvexEnvelope
             Graphics gr = Graphics.FromImage(bmp);
             Pen DotPen = new Pen(Brushes.Red, 4);
             Pen LinePen = new Pen(Brushes.Green, 2);
-            for (int i = 0; i < points.Count()-1; i++)
-            {
-                gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)),new Size(2,2)));
-                gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i+1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i+1].Y * scale)), new Size(2, 2)));
-                gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i + 1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i + 1].Y * scale)));
+            for (int i = 0; i < points.Count; i++)
+            {  
+                if (i != points.Count - 1)
+                {
+
+                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
+                    //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i+1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i+1].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[0].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[0].Y * scale)));
+                    //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i + 1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i + 1].Y * scale)));
+                }
+                else
+                {
+                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
+                    //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[0].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[0].Y * scale)));
+                }
+                pictureBox.Image = bmp;
             }
-            pictureBox.Image = bmp;
         }
     }
 }
