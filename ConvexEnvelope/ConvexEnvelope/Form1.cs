@@ -65,7 +65,26 @@ namespace ConvexEnvelope
             {
                 MessageBox.Show("Ошибка открытия файла!" + ex.Message);
             }
+            DrawPoints();
             ConvexMethod();
+        }
+
+        void DrawPoints()
+        {
+            Graphics gr = Graphics.FromImage(bmp);
+            Pen DotPen = new Pen(Brushes.Red, 4);
+            for (int i = 0; i < points.Count; i++)
+            {
+                if (i != points.Count - 1)
+                {
+                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
+                }
+                else
+                {
+                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
+                }
+                pictureBox.Image = bmp;
+            }
         }
 
         void ConvexMethod()
@@ -123,10 +142,10 @@ namespace ConvexEnvelope
             result.Push(points[0]);
             result.Push(points[1]);
             //Доделать!
-            /*for(int i = 2; i < points.Count; i++)
+            for(int i = 2; i < points.Count; i++)
             {
-                b = result.Pop();
-                a = result.Peek();
+                b = result.Pop();   //Последний элемент
+                a = result.Peek();  //Предпоследний
                 result.Push(b);
                 c = points[i];
                 Vector u = new Vector(a, b);
@@ -135,30 +154,33 @@ namespace ConvexEnvelope
                 while (!(u.X * v.Y - u.Y * v.X >= 0))
                 {
                     result.Pop();
+                    b = result.Pop();   //Последний элемент
+                    a = result.Peek();  //Предпоследний
+                    result.Push(b);
+                    c = points[i];
+                    u = new Vector(a, b);
+                    v = new Vector(b, c);
                 }
                 result.Push(points[i]);
-            }*/
-            DrawFigure();
+            }
+            points = result.ToList<PointF>();
+            DrawConvexFigure();
         }
 
-        void DrawFigure()
+        void DrawConvexFigure()
         {
             Graphics gr = Graphics.FromImage(bmp);
-            Pen DotPen = new Pen(Brushes.Red, 4);
             Pen LinePen = new Pen(Brushes.Green, 2);
             for (int i = 0; i < points.Count; i++)
             {  
                 if (i != points.Count - 1)
                 {
-
-                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
                     //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i+1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i+1].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[0].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[0].Y * scale)));
-                    //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i + 1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i + 1].Y * scale)));
+                    gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i + 1].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i + 1].Y * scale)));
                 }
                 else
                 {
-                    gr.DrawRectangle(DotPen, new Rectangle(new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Size(2, 2)));
-                    //gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[0].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[0].Y * scale)));
+                    gr.DrawLine(LinePen, new Point(Convert.ToInt32(pictureBox.Width / 2 + points[i].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[i].Y * scale)), new Point(Convert.ToInt32(pictureBox.Width / 2 + points[0].X * scale), Convert.ToInt32(pictureBox.Height / 2 - points[0].Y * scale)));
                 }
                 pictureBox.Image = bmp;
             }
