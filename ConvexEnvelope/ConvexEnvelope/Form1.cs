@@ -141,7 +141,6 @@ namespace ConvexEnvelope
             }
             result.Push(points[0]);
             result.Push(points[1]);
-            //Доделать!
             for(int i = 2; i < points.Count; i++)
             {
                 b = result.Pop();   //Последний элемент
@@ -154,9 +153,11 @@ namespace ConvexEnvelope
                 while (!(u.X * v.Y - u.Y * v.X >= 0))
                 {
                     result.Pop();
+
                     b = result.Pop();   //Последний элемент
                     a = result.Peek();  //Предпоследний
                     result.Push(b);
+
                     c = points[i];
                     u = new Vector(a, b);
                     v = new Vector(b, c);
